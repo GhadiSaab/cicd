@@ -15,6 +15,7 @@ public class CityResource {
     @POST
     @Transactional
     public Response create(City city) {
+        city.id = null;
         city.persist();
         return Response.status(Response.Status.CREATED).entity(city).build();
     }
