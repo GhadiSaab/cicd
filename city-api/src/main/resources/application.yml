@@ -1,0 +1,13 @@
+quarkus:
+  http:
+    host: ${CITY_API_ADDR:127.0.0.1}
+    port: ${CITY_API_PORT:2022}
+  datasource:
+    jdbc:
+      url: ${CITY_API_DB_URL}
+    username: ${CITY_API_DB_USER}
+    password: ${CITY_API_DB_PWD}
+  hibernate-orm:
+    database:
+      generation: none
+

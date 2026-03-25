@@ -1,7 +1,10 @@
 DROP TABLE IF EXISTS city CASCADE;
+DROP SEQUENCE IF EXISTS city_id_seq;
+
+CREATE SEQUENCE city_id_seq START 1;
 
 CREATE TABLE IF NOT EXISTS city (
-    id INTEGER PRIMARY KEY CHECK (id >= 0),
+    id INTEGER PRIMARY KEY DEFAULT nextval('city_id_seq') CHECK (id >= 0),
     department_code VARCHAR(50) NOT NULL,
     insee_code VARCHAR(50),
     zip_code VARCHAR(50),
