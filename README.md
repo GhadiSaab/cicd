@@ -9,12 +9,6 @@ Assurez-vous d'avoir installé sur votre machine :
 - [Docker](https://docs.docker.com/engine/install/) et [Docker Compose](https://docs.docker.com/compose/install/)
 - [Maven](https://maven.apache.org/install.html)
 
-**Installation de Maven :**
-
-- **Ubuntu / Debian** : `sudo apt update && sudo apt install maven`
-- **macOS** : `brew install maven`
-- **Windows** : `choco install maven` ou `scoop install maven`
-
 ### Compilation et lancement
 
 Placez-vous à la racine du projet et tapez :
