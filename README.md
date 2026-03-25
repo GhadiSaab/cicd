@@ -1,18 +1,56 @@
-# city-api
+# city-api 🏙️
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## 🚀 Démarrage rapide (Le plus simple avec Docker)
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Assurez-vous d'avoir [Docker](https://docs.docker.com/get-docker/) et [Docker Compose](https://docs.docker.com/compose/install/) installés.
 
-## Running the application in dev mode
+Pour compiler l'application puis lancer toute la stack (Base de données PostgreSQL + API Java), placez-vous à la racine du projet et tapez :
 
-You can run your application in dev mode that enables live coding using:
+```bash
+mvn package
+docker compose up --build -d
+```
 
-```shell script
+L'API sera alors accessible localement sur le port **2022** (et la base de données sur le port **5433**).
+
+Vous pouvez vérifier que l'API est en ligne en appelant la route de santé interne :
+```bash
+curl http://localhost:2022/_health
+```
+
+Pour arrêter le projet proprement (sans perdre les données de la base) :
+```bash
+docker compose down
+```
+
+Pour arrêter le projet ET réinitialiser la base de données :
+```bash
+docker compose down -v
+```
+
+---
+
+## 🛠️ Mode Développement (Live Coding & Dev UI)
+
+En mode développement, Quarkus offre le "Live Coding" (rechargement à chaud de votre code) et une **Dev UI** contenant plein d'outils bien pratiques. 
+Pour l'utiliser, il faut déléguer la base de données à Docker, mais lancer l'application Quarkus "localement" via Maven :
+
+1. **Lancer uniquement la base de données** avec Docker :
+```bash
+docker compose up db -d
+```
+
+2. **Démarrer Quarkus en mode dev** :
+```bash
 mvn quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+L'API sera disponible sur le port **2022** (défini dans le `.env`) et la **Dev UI** sera accessible à l'adresse suivante :
+👉 **http://localhost:2022/q/dev-ui** ou **http://localhost:2022/q/dev**
+
+---
+
+*(Les explications ci-dessous ont été générées automatiquement par Quarkus à la création du projet)*
 
 ## Packaging and running the application
 

@@ -11,23 +11,23 @@ public class City extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "city_seq")
     @SequenceGenerator(name = "city_seq", sequenceName = "city_id_seq", allocationSize = 1)
     @Column(nullable = false)
-    public Long id;
+    public Integer id;
 
-    @Column(name = "department_code", nullable = false)
+    @Column(name = "department_code", nullable = false, length = 50)
     public String departmentCode;
 
-    @Column(name = "insee_code")
+    @Column(name = "insee_code", length = 50)
     public String inseeCode;
 
-    @Column(name = "zip_code")
+    @Column(name = "zip_code", length = 50)
     public String zipCode;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     public String name;
 
     @Column(nullable = false)
-    public float lat;
+    public double lat;
 
     @Column(nullable = false)
-    public float lon;
+    public double lon;
 }

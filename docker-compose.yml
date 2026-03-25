@@ -11,10 +11,14 @@ services:
       - ./build/database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   city-api:
-    build: ./city-api
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile.jvm
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      - CITY_API_DB_URL=jdbc:postgresql://db:5432/city_api
     ports:
       - "2022:2022"
     depends_on:
