@@ -10,4 +10,3 @@ quarkus:
   hibernate-orm:
     database:
       generation: none
-
