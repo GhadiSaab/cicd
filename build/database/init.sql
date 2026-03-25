@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS city CASCADE;
+
+CREATE TABLE IF NOT EXISTS city (
+    id INTEGER PRIMARY KEY CHECK (id >= 0),
+    department_code VARCHAR(50) NOT NULL,
+    insee_code VARCHAR(50),
+    zip_code VARCHAR(50),
+    name VARCHAR(255) NOT NULL,
+    lat DOUBLE PRECISION NOT NULL,
+    lon DOUBLE PRECISION NOT NULL
+    );
