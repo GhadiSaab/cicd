@@ -12,3 +12,10 @@ CREATE TABLE IF NOT EXISTS city (
     lat DOUBLE PRECISION NOT NULL,
     lon DOUBLE PRECISION NOT NULL
     );
+
+
+INSERT INTO city (id, department_code, insee_code, zip_code, name, lat, lon)
+SELECT * FROM json_populate_recordset(
+        NULL::city,
+        pg_read_file('/tmp/cities.json')::json
+              ) ON CONFLICT (id) DO NOTHING;
