@@ -21,6 +21,47 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Set up environnement
+        run: |
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" > .env
+          echo "POSTGRES_USER=${{ secrets.CITY_API_DB_USER }}" >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.CITY_API_DB_PWD }}" >> .env
+
+      - name: Start database
+        run: docker compose up -d db
+
+      - name: Wait for PostgreSQL initialization
+        run: |
+          echo "Waiting for PostgreSQL to start and data to be imported..."
+          until docker compose exec db psql -U ${{ secrets.DB_USER }} \
+            -d ${{ secrets.DB_NAME }} -c "SELECT count(*) FROM city;" \
+            > /dev/null 2>&1; do
+            sleep 3
+          done
+          echo "PostgreSQL is ready and data is imported!"
+
+      - name: Run Maven tests
+        env:
+          CITY_API_ADDR: ${{ secrets.CITY_API_ADDR }}
+          CITY_API_PORT: ${{ secrets.CITY_API_PORT }}
+          CITY_API_DB_URL: ${{ secrets.CITY_API_DB_URL }}
+          CITY_API_DB_USER: ${{ secrets.CITY_API_DB_USER }}
+          CITY_API_DB_PWD: ${{ secrets.CITY_API_DB_PWD }}
+        run: mvn test
+
 
   build:
     runs-on: ubuntu-latest
@@ -35,7 +76,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: build with mvn
+      - name: Build with mvn
         run: ./mvnw package -DskipTests
 
       - name: Log in to GHCR
