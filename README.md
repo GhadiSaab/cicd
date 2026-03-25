@@ -19,7 +19,7 @@ docker compose up --build -d
 ```
 
 L'API sera accessible sur le port **2022**.
-Pour vérifier : `curl http://localhost:2022/_health`
+Pour vérifier : `curl http://localhost:2022/_health -v`
 La base de données PostgreSQL est sur le port **5433**.
 
 ### Arrêt
