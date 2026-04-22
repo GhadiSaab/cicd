@@ -59,7 +59,7 @@ jobs:
         env:
           CITY_API_ADDR: ${{ secrets.CITY_API_ADDR }}
           CITY_API_PORT: ${{ secrets.CITY_API_PORT }}
-          CITY_API_DB_URL: ${{ secrets.CITY_API_DB_URL }}
+          CITY_API_DB_URL: jdbc:postgresql://localhost:5433/${{ secrets.POSTGRES_DB }}
           CITY_API_DB_USER: ${{ secrets.CITY_API_DB_USER }}
           CITY_API_DB_PWD: ${{ secrets.CITY_API_DB_PWD }}
         run: mvn test
