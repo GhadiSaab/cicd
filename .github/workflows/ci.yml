@@ -94,6 +94,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Set image name
+        run: |
+          echo "IMAGE=ghcr.io/${{ github.repository_owner }}" \
+            "/${{ github.event.repository.name }}:latest" \
+            | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+
       - name: Build
         uses: docker/build-push-action@v6
         with:
@@ -101,9 +107,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: src/main/docker/Dockerfile.jvm
           push: true
-          tags: >-
-            ghcr.io/${{ github.repository_owner }}/${{
-            github.event.repository.name }}:latest
+          tags: ${{ env.IMAGE }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -111,9 +115,7 @@ jobs:
         # We may need to specify which platform to scan using Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: >-
-            ghcr.io/${{ github.repository_owner }}/${{
-            github.event.repository.name }}:latest
+          image-ref: ${{ env.IMAGE }}
           format: 'sarif'  # SARIF format for GitHub Security tab upload
           output: 'trivy-results.sarif'
           severity: 'CRITICAL,HIGH'  # Flag critical and high CVEs only
