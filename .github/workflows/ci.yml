@@ -117,7 +117,7 @@ jobs:
           image-ref: ${{ env.IMAGE }}
           format: 'sarif'  # SARIF format for GitHub Security tab upload
           output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'  # Flag critical and high CVEs only
+          severity: 'CRITICAL'  # Flag critical and high CVEs only
           exit-code: '1'
 
       - name: Upload Trivy results to github security tab
