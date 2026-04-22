@@ -19,3 +19,5 @@ SELECT * FROM json_populate_recordset(
         NULL::city,
         pg_read_file('/tmp/cities.json')::json
 ) ON CONFLICT (id) DO NOTHING;
+
+SELECT setval('city_id_seq', (SELECT MAX(id) FROM city));
