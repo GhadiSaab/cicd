@@ -9,8 +9,9 @@
   "prConcurrentLimit": 0,
   "packageRules": [
     {
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
-      "automerge": false
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions Updates",
+      "enabled": true
     }
   ]
 }
