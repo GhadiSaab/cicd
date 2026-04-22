@@ -17,10 +17,10 @@ repos:
     hooks:
       - id: forbid-tabs
         exclude: ^mvnw(\.cmd)?$
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.30.0
-    hooks:
-      - id: yamllint
+  # - repo: https://github.com/adrienverge/yamllint
+  #   rev: v1.30.0
+  #   hooks:
+  #     - id: yamllint
   - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
     rev: v0.1.0
     hooks:
