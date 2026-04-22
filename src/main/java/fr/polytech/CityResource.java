@@ -30,4 +30,16 @@ public class CityResource {
     public long count() {
         return City.count() - 1;
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Integer id) {
+        City city = City.findById(id);
+        if (city == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        city.delete();
+        return Response.noContent().build();
+    }
 }
