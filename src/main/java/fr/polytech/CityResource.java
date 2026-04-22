@@ -28,6 +28,6 @@ public class CityResource {
     @GET
     @Path("/count")
     public long count() {
-        return City.count() - 1;
+        return City.count();
     }
 }
