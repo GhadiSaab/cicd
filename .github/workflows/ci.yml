@@ -129,7 +129,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Set image tag for Trivy
-        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:sha-${GITHUB_SHA::7}" >> $GITHUB_ENV
+        run: echo "IMAGE=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:sha-${GITHUB_SHA::7}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
