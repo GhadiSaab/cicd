@@ -81,6 +81,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'maven'
 
       - name: Build with mvn
         run: ./mvnw package -DskipTests
@@ -155,6 +156,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'maven'
 
       - name: Build with mvn
         run: ./mvnw package -DskipTests
