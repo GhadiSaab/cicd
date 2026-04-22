@@ -6,5 +6,11 @@
   "labels": ["dependencies"],
   "dependencyDashboard": false,
   "prHourlyLimit": 0,
-  "prConcurrentLimit": 0
+  "prConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "automerge": false
+    }
+  ]
 }
