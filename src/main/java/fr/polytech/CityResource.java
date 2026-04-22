@@ -24,4 +24,10 @@ public class CityResource {
     public List<City> list() {
         return City.listAll();
     }
+
+    @GET
+    @Path("/count")
+    public long count() {
+        return City.count() - 1;
+    }
 }
