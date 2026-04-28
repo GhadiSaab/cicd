@@ -42,4 +42,14 @@ public class CityResource {
         city.delete();
         return Response.noContent().build();
     }
+
+    @GET
+    @Path("/{id}")
+    public Response findById(@PathParam("id") Integer id) {
+        City city = City.findById(id);
+        if (city == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(city).build();
+    }
 }
