@@ -52,4 +52,5 @@ public class CityResource {
         }
         return Response.ok(city).build();
     }
+
 }
