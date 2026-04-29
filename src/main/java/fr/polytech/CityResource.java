@@ -42,4 +42,10 @@ public class CityResource {
         city.delete();
         return Response.noContent().build();
     }
+
+    @GET
+    @Path("/routetest")
+    public long aqqqqqqqqqqqqqqqqq() {
+        return City.count();
+    }
 }
