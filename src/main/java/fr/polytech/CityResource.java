@@ -43,9 +43,4 @@ public class CityResource {
         return Response.noContent().build();
     }
 
-    @GET
-    @Path("/routetest")
-    public long aqqqqqqqqqqqqqqqqq() {
-        return City.count();
-    }
 }
