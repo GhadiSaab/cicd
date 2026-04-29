@@ -5,8 +5,28 @@ name: CI
   push:
     branches: [main]
     tags: ['v*.*.*']
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+      - 'mvnw'
+      - 'mvnw.cmd'
+      - 'docker-compose.yml'
+      - 'build/**'
+      - '.github/workflows/**'
+      - '.pre-commit-config.yaml'
+      - 'renovate.json'
   pull_request:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+      - 'mvnw'
+      - 'mvnw.cmd'
+      - 'docker-compose.yml'
+      - 'build/**'
+      - '.github/workflows/**'
+      - '.pre-commit-config.yaml'
+      - 'renovate.json'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
